@@ -3,7 +3,17 @@
     import moment from 'moment';
 
     export default {
-        props: ['value', 'options', 'optionId', 'optionText'],
+        // props: ['value', 'options', 'optionId', 'optionText'],
+
+        props: {
+            value: {},
+            options: {},
+            optionId: {},
+            optionText: {},
+            placeholderText: {
+                default: 'Add tags'
+            }
+        },
 
         data() {
             return {
@@ -17,14 +27,14 @@
 
         mounted() {
             this.$refs.input.style.width = this.value.length ? '25px' : '108px';
-            this.$refs.input.placeholder = this.value.length ? '' : 'Add tags';
+            this.$refs.input.placeholder = this.value.length ? '' : this.placeholderText;
         },
 
 
         watch: {
             value(val) {
                 this.$refs.input.style.width = this.value.length ? '25px' : '108px';
-                this.$refs.input.placeholder = this.value.length ? '' : 'Add tags';
+                this.$refs.input.placeholder = this.value.length ? '' : this.placeholderText;
             },
 
             searchTerm(val) {

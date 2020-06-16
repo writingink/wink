@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 // Blog Posts...
 Route::get('/api/posts', 'PostsController@index')->name('posts.index');
 Route::get('/api/posts/{id?}', 'PostsController@show')->name('posts.show');
@@ -26,6 +28,12 @@ Route::get('/api/pages', 'PagesController@index')->name('pages.index');
 Route::get('/api/pages/{id?}', 'PagesController@show')->name('pages.show');
 Route::post('/api/pages/{id}', 'PagesController@store')->name('pages.store');
 Route::delete('/api/pages/{id}', 'PagesController@delete')->name('pages.delete');
+
+// Categories...
+Route::get('/api/categories', 'CategoriesController@index')->name('categories.index');
+Route::get('/api/categories/{id?}', 'CategoriesController@show')->name('categories.show');
+Route::post('/api/categories/{id}', 'CategoriesController@store')->name('categories.store');
+Route::delete('/api/categories/{id}', 'CategoriesController@delete')->name('categories.delete');
 
 // Logout Route...
 Route::get('/logout', 'LoginController@logout')->name('logout');

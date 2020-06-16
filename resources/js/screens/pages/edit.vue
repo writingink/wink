@@ -17,6 +17,7 @@
                 saveKeyboardShortcut: null,
 
                 errors: [],
+                categories: [],
 
                 settingsModalShown: false,
                 seoModalShown: false,
@@ -26,6 +27,7 @@
                     id: '',
                     title: 'Page Title',
                     slug: '',
+                    categories: [],
                     body: '',
                     meta: {
                         meta_description: '',
@@ -67,8 +69,10 @@
         /**
          * Prepare the component.
          */
-        mounted() {
+        created() {
             document.title = "Edit Page — Wink.";
+
+            this.loadResources();
 
             this.http().get('/api/pages/' + this.id).then(response => {
                 this.entry = _.cloneDeep(response.data.entry);
@@ -93,6 +97,15 @@
 
 
         methods: {
+            /**
+             * Load the resources needed for the screen.
+             */
+            loadResources() {
+                this.http().get('/api/categories').then(response => {
+                    this.categories = response.data.data;
+                });
+            },
+
             registerSaveKeyboardShortcut() {
                 this.saveKeyboardShortcut = (event) => {
                     if ((event.ctrlKey || event.metaKey) && event.which == 83) {
@@ -113,6 +126,7 @@
                     this.form.title = data.title;
                     this.form.slug = data.slug;
                     this.form.body = data.body;
+                    this.form.categories = data.categories || '';
                     this.form.meta = {
                         meta_description: data.meta.meta_description || '',
                         opengraph_title: data.meta.opengraph_title || '',
@@ -264,6 +278,18 @@
                        id="slug">
 
                 <form-errors :errors="errors.slug"></form-errors>
+            </div>
+
+            <div class="input-group"
+            v-if="categories">
+                <label for="category_ids" class="input-label mb-4">Categories</label>
+                <multiselect :options="categories"
+                             option-id="id"
+                             v-model="form.categories"
+                             option-text="name"
+                             placeholder-text="Add categories"
+                ></multiselect>
+                <form-errors :errors="errors.categories"></form-errors>
             </div>
 
             <div class="mt-10">

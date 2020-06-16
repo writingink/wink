@@ -2,7 +2,7 @@
 
 namespace Wink;
 
-class WinkPage extends AbstractWinkModel
+class WinkCategory extends AbstractWinkModel
 {
     /**
      * The attributes that aren't mass assignable.
@@ -16,7 +16,7 @@ class WinkPage extends AbstractWinkModel
      *
      * @var string
      */
-    protected $table = 'wink_pages';
+    protected $table = 'wink_categories';
 
     /**
      * The primary key for the model.
@@ -39,29 +39,22 @@ class WinkPage extends AbstractWinkModel
      */
     public $incrementing = false;
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'id' => 'string',
-        'body' => 'string',
-        'meta' => 'array',
-    ];
-
-    /**
-     * Get the renderable page content.
-     *
-     * @return HtmlString
-     */
-    public function getContentAttribute()
+    public function pages()
     {
-        return $this->body;
+        return $this->morphedByMany(WinkPage::class, 'categoriable', 'wink_categoriables', 'category_id', 'categoriable_id');
     }
 
-    public function categories()
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
     {
-        return $this->morphToMany(WinkCategory::class, 'categoriable', 'wink_categoriables', 'categoriable_id', 'category_id');
+        parent::boot();
+
+        static::deleting(function ($item) {
+            $item->pages()->detach();
+        });
     }
 }
