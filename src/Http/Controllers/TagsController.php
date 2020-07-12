@@ -60,6 +60,7 @@ class TagsController
         $data = [
             'name' => request('name'),
             'slug' => request('slug'),
+            'description' => request('description'),
             'meta' => request('meta', (object) []),
         ];
 

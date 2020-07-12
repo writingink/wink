@@ -22,6 +22,7 @@
                     id: '',
                     name: '',
                     slug: '',
+                    description: '',
                     meta: {
                         meta_description: '',
                         opengraph_title: '',
@@ -51,6 +52,7 @@
                 if (this.id != 'new') {
                     this.form.name = response.data.entry.name;
                     this.form.slug = response.data.entry.slug;
+                    this.form.description = response.data.entry.description;
 
                     this.form.meta = {
                         meta_description: response.data.entry.meta.meta_description || '',
@@ -191,6 +193,17 @@
                            id="slug">
 
                     <form-errors :errors="form.errors.slug"></form-errors>
+                </div>
+
+                <div class="input-group">
+                    <label for="description" class="input-label">Tag Description</label>
+                    <textarea
+                        class="input"
+                        placeholder="Describe the tag..."
+                        id="description"
+                        v-model="form.description"></textarea>
+
+                    <form-errors :errors="form.errors.description"></form-errors>
                 </div>
             </div>
         </div>
