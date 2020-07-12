@@ -3,7 +3,7 @@
     import moment from 'moment';
 
     export default {
-        props: ['value', 'options', 'optionId', 'optionText'],
+        props: ['value', 'options', 'optionId', 'optionText', 'highlightPrivate'],
 
         data() {
             return {
@@ -210,9 +210,10 @@
          @click="activate"
          v-click-outside="deactivate">
         <div class="multiselect_options">
-            <span class="bg-light hover:bg-red rounded cursor-pointer text-sm text-contrast font-semibold px-1 mr-1"
+            <span
                   v-for="option in value"
-                  v-on:click="removeOption(option)">{{option[optionText]}}</span>
+                  v-on:click="removeOption(option)"
+                  :class="'rounded cursor-pointer text-sm font-semibold px-1 mr-1 ' + ((highlightPrivate && option[optionText].indexOf('#')) === 0 ? 'border border-light bg-contrast text-light hover:border-red hover:text-red' : 'bg-light hover:bg-red text-contrast')">{{option[optionText]}}</span>
 
             <input type="text"
                    class="focus:outline-none bg-transparent text-text-color"

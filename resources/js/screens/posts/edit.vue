@@ -460,6 +460,7 @@
                              option-id="id"
                              v-model="form.tags"
                              option-text="name"
+                             :highlight-private="true"
                 ></multiselect>
                 <form-errors :errors="errors.tags"></form-errors>
             </div>

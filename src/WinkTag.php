@@ -59,6 +59,28 @@ class WinkTag extends AbstractWinkModel
     }
 
     /**
+     * Scope a query to only include tags with a name that starts with '#'.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopePrivate($builder)
+    {
+        return $builder->where('name', 'LIKE', '#%');
+    }
+
+    /**
+     * Scope a query to only include tags with a name that doesn't start with '#'.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopePublic($builder)
+    {
+        return $builder->where('name', 'NOT LIKE', '#%');
+    }
+
+    /**
      * The "booting" method of the model.
      *
      * @return void
