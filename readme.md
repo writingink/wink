@@ -78,6 +78,17 @@ Wink is faceless, it doesn't have any opinions on how you display your content i
 
 To display posts and pages content, use `$post->content` instead of `$post->body`. The content will always be in HTML format while the body might be HTML or raw markdown based on the post type.
 
+## Displaying page by category
+```php
+ $category = Wink\WinkCategory::find('categoryId');
+ $pages = $category->pages; // returns collections of pages
+```
+To get page category, you can use the following:
+```php
+$page = Wink\WinkPage::find('pageId');
+$categories = $page->categories; // returns collections of categories
+```
+
 ## Contributing
 
 Check the [contribution guide](CONTRIBUTING.md).
