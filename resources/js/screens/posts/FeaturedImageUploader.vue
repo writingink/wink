@@ -100,7 +100,8 @@
             </div>
         </div>
 
-        <image-picker :key="imagePickerKey"
+        <image-picker v-if="!imageUrl"
+                      :key="imagePickerKey"
                       class="mt-5"
                       @changed="updateImage"
                       @progressing="updateProgress"
