@@ -78,6 +78,54 @@ Wink is faceless, it doesn't have any opinions on how you display your content i
 
 To display posts and pages content, use `$post->content` instead of `$post->body`. The content will always be in HTML format while the body might be HTML or raw markdown based on the post type.
 
+## Generating a sample controller
+
+You can **generate a sample controller** by running:
+
+```sh
+php artisan wink:controller BlogController
+```
+
+This will create a file in your `Http/Controllers` directory named `BlogController.php`.  You can replace `BlogController` in the commandnoun you prefer which will prefix the file and class names  (e.g. if you use`php artisan wink:controller Post` the file and class created will be named `PostController` with any name for your controller. 
+
+The sample controller contains the following code:
+
+```angular2
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Wink\WinkPost;
+
+class BlogController extends Controller
+{
+    public function index()
+    {
+        $posts = WinkPost::with('tags')
+            ->live()
+            ->orderBy('publish_date', 'DESC')
+            ->simplePaginate(10);
+        return view('blog.index', [
+            'posts' => $posts,
+        ]);
+    }
+
+    public function show ($slug)
+    {
+        $post = WinkPost::live()->whereSlug($slug)->firstOrFail();
+
+        return view('post.index', [
+            'post' => $post
+        ]);
+    }
+}
+```
+ 
+ This mean the `index()` method will retrieve 10 published blog posts per page with their associated tags, most recent first, and render them in the `blog.index` view. You will need to create that view and the associated route.
+ 
+ The `show()` method in turn will retrieve a single published post corresponding to its slug and render it in the `post.index` view,  displaying an error message if it's not found.  You will need to create that view with the associated route,. 
+ 
 ## Credits
 
 - [Mohamed Said](https://github.com/themsaid)
