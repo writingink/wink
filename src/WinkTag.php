@@ -2,8 +2,12 @@
 
 namespace Wink;
 
+use Wink\Traits\HasSlug;
+
 class WinkTag extends AbstractWinkModel
 {
+    use HasSlug;
+
     /**
      * The attributes that aren't mass assignable.
      *

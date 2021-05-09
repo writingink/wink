@@ -5,9 +5,12 @@ namespace Wink;
 use DateTimeInterface;
 use Illuminate\Support\HtmlString;
 use League\CommonMark\GithubFlavoredMarkdownConverter;
+use Wink\Traits\HasSlug;
 
 class WinkPost extends AbstractWinkModel
 {
+    use HasSlug;
+
     /**
      * The attributes that aren't mass assignable.
      *

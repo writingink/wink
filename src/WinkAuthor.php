@@ -3,9 +3,12 @@
 namespace Wink;
 
 use Illuminate\Contracts\Auth\Authenticatable;
+use Wink\Traits\HasSlug;
 
 class WinkAuthor extends AbstractWinkModel implements Authenticatable
 {
+    use HasSlug;
+
     /**
      * The attributes that aren't mass assignable.
      *
