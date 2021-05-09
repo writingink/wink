@@ -20,7 +20,7 @@ class PagesController
             $q->where('title', 'LIKE', '%'.request('search').'%');
         })
             ->orderBy('created_at', 'DESC')
-            ->paginate(30);
+            ->paginate(config('wink.pagination.pages', 30));
 
         return PagesResource::collection($entries);
     }

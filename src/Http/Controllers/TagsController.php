@@ -21,7 +21,7 @@ class TagsController
         })
             ->orderBy('created_at', 'DESC')
             ->withCount('posts')
-            ->paginate(30);
+            ->paginate(config('wink.pagination.tags', 30));
 
         return TagsResource::collection($entries);
     }

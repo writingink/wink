@@ -94,4 +94,19 @@ return [
         'default' => null,
 
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | The pagination of wink collections
+    |--------------------------------------------------------------------------
+    |
+    | You can configure here the number of items, per page.
+    |
+    */
+    'pagination' => [
+        'posts' => 30,
+        'tags' => 30,
+        'teams' => 30,
+        'pages' => 30,
+    ],
 ];

@@ -30,7 +30,7 @@ class PostsController
         })
             ->orderBy('created_at', 'DESC')
             ->with('tags')
-            ->paginate(30);
+            ->paginate(config('wink.pagination.posts', 30));
 
         return PostsResource::collection($entries);
     }

@@ -22,7 +22,7 @@ class TeamController
         })
             ->orderBy('created_at', 'DESC')
             ->withCount('posts')
-            ->paginate(30);
+            ->paginate(config('wink.pagination.teams', 30));
 
         return TeamResource::collection($entries);
     }
