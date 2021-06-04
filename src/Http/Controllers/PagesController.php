@@ -58,6 +58,7 @@ class PagesController
             'title' => request('title'),
             'slug' => request('slug'),
             'body' => request('body', ''),
+            'language' => request('language', 'en'),
             'meta' => request('meta', (object) []),
         ];
 

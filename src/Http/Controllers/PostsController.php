@@ -73,6 +73,7 @@ class PostsController
             'excerpt' => request('excerpt', ''),
             'slug' => request('slug'),
             'body' => request('body', ''),
+            'language' => request('language', 'en'),
             'published' => request('published'),
             'markdown' => request('markdown'),
             'author_id' => request('author_id'),

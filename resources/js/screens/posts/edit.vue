@@ -36,6 +36,7 @@
                     id: '',
                     title: 'Draft',
                     slug: '',
+                    language: 'en',
                     excerpt: '',
                     tags: [],
                     author_id: '',
@@ -151,6 +152,7 @@
                     this.form.slug = data.slug;
                     this.form.excerpt = data.excerpt;
                     this.form.body = data.body;
+                    this.form.language = data.language;
                     this.form.published = data.published;
                     this.form.markdown = data.markdown;
                     this.form.tags = data.tags || '';
@@ -451,6 +453,16 @@
                        id="slug">
 
                 <form-errors :errors="errors.slug"></form-errors>
+            </div>
+
+            <div class="input-group">
+                <label class="input-label">Language</label>
+                <input type="text" class="input"
+                       v-model="form.language"
+                       placeholder="Give me a language"
+                       id="language">
+
+                <form-errors :errors="errors.language"></form-errors>
             </div>
 
             <div class="input-group">

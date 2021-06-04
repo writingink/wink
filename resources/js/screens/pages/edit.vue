@@ -27,6 +27,7 @@
                     title: 'Page Title',
                     slug: '',
                     body: '',
+                    language: 'en',
                     meta: {
                         meta_description: '',
                         opengraph_title: '',
@@ -113,6 +114,7 @@
                     this.form.title = data.title;
                     this.form.slug = data.slug;
                     this.form.body = data.body;
+                    this.form.language = data.language;
                     this.form.meta = {
                         meta_description: data.meta.meta_description || '',
                         opengraph_title: data.meta.opengraph_title || '',
@@ -264,6 +266,16 @@
                        id="slug">
 
                 <form-errors :errors="errors.slug"></form-errors>
+            </div>
+
+            <div class="input-group">
+                <label class="input-label">Language</label>
+                <input type="text" class="input"
+                       v-model="form.language"
+                       placeholder="Give me a language"
+                       id="language">
+
+                <form-errors :errors="errors.language"></form-errors>
             </div>
 
             <div class="mt-10">

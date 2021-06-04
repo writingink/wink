@@ -1,12 +1,12 @@
 {
-    "name": "themsaid/wink",
+    "name": "alighasemzadeh/wink",
     "description": "Wink Publishing Framework.",
     "keywords": ["framework", "laravel", "blog"],
     "license": "MIT",
     "authors": [
         {
-            "name": "Mohamed Said",
-            "email": "mohamed@laravel.com"
+            "name": "Ali Ghasemzadeh",
+            "email": "alighasemzadeh.dev@gmail.com"
         }
     ],
     "require": {
